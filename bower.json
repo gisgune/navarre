@@ -1,0 +1,21 @@
+{
+  "name": "navarre",
+  "version": "0.0.0",
+  "homepage": "https://github.com/javikalsan/navarre",
+  "authors": [
+    "javikalsan <jcalzadosanchez@gmail.com>"
+  ],
+  "description": "A Simple Map with interesting layers of Navarre, built with openlayers3",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+
+  },
+}
