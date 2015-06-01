@@ -1,6 +1,32 @@
 (function() {
+
+  var controls = [
+  //new ol.control.Attribution(),
+  /*new ol.control.MousePosition({
+      undefinedHTML: 'outside',
+      projection: 'EPSG:4326',
+      coordinateFormat: function(coordinate) {
+          return ol.coordinate.format(coordinate, '{x}, {y}', 4);
+      }
+  }),*/
+  /*new ol.control.OverviewMap({
+      collapsed: false
+  }),*/
+  new ol.control.Rotate({
+    autoHide: false
+  }),
+  new ol.control.ScaleLine(),
+  new ol.control.Zoom(),
+  new ol.control.ZoomSlider(),
+  new ol.control.ZoomToExtent(),
+  new ol.control.FullScreen()
+  ];
+
+
     var map = new ol.Map({
         target: 'map',
+        renderer: 'canvas',
+        controls: controls,
         layers: [
             new ol.layer.Group({
                 'title': 'Base maps',
@@ -159,6 +185,7 @@
                             params: {LAYERS: 'ortofoto_2500_1929', VERSION: '1.1.1'}
                         })
                     }),
+                    // gmap,
 
 
 
@@ -193,12 +220,27 @@
                     }),
 
                     new ol.layer.Tile({
+                        // extent: [ 541084, 4640788, 685574, 4796618 ],
                         title: 'Municipios',
                         source: new ol.source.TileWMS({
                             url: 'http://idena.navarra.es/ogc/wms.aspx?',
-                            params: { LAYERS: 'CATAST_Pol_Municipio___', VERSION: '1.1.1'}
+                            params: { LAYERS: 'CATAST_Pol_Municipio___', VERSION: '1.1.1'},
+                            serverType: 'geoserver'
                         })
                     }),
+
+                    // TODO: for singleTile the layer have to be Image but don't working
+                    // new ol.layer.Image({
+                    //     // extent: [ 541084, 4640788, 685574, 4796618 ],
+                    //     title: 'Municipios',
+                    //     source: new ol.source.ImageWMS({
+                    //         url: 'http://idena.navarra.es/ogc/wms.aspx?',
+                    //         params: { LAYERS: 'DIADMI_Pol_Municipio_VE2015', VERSION: '1.1.1'},
+                    //         serverType: 'geoserver'
+                    //     })
+                    // }),
+
+
 
                 ]
             })
@@ -210,7 +252,7 @@
     });
 
     var layerSwitcher = new ol.control.LayerSwitcher({
-        tipLabel: 'Légende' // Optional label for button
+        tipLabel: 'Layers' // Optional label for button
     });
     map.addControl(layerSwitcher);
 
