@@ -256,4 +256,12 @@
     });
     map.addControl(layerSwitcher);
 
+    window.ol3d = new olcs.OLCesium({map: map});
+    var scene = window.ol3d.getCesiumScene();
+    var terrainProvider = new Cesium.CesiumTerrainProvider({
+        url : '//cesiumjs.org/stk-terrain/tilesets/world/tiles'
+    });
+    scene.terrainProvider = terrainProvider;
+
+
 })();
