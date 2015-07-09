@@ -186,9 +186,6 @@
                         })
                     }),
                     // gmap,
-
-
-
                 ]
             }),
             new ol.layer.Group({
@@ -228,6 +225,38 @@
                             serverType: 'geoserver'
                         })
                     }),
+                    new ol.layer.Tile({
+                        title: 'Embalses',
+                        visible: false,
+                        source: new ol.source.TileWMS({
+                            url: 'http://idena.navarra.es/ogc/wms.aspx?',
+                            params: { LAYERS: 'HIDROG_Pol_SuperfiAgua_', VERSION: '1.1.1'},
+                            serverType: 'geoserver'
+                        })
+                    }),
+                    new ol.layer.Tile({
+                        title: 'Rena',
+                        visible: false,
+                        source: new ol.source.TileWMS({
+                            url: 'http://idena.navarra.es/ogc/wms.aspx?',
+                            params: { LAYERS: 'BIODIV_Pol_RENA', VERSION: '1.1.1'},
+                            serverType: 'geoserver'
+                        })
+                    }),
+                    new ol.layer.Tile({
+                        title: 'Monumentos',
+                        visible: false,
+                        source: new ol.source.TileWMS({
+                            url: 'http://idena.navarra.es/ogc/wms.aspx?',
+                            params: { LAYERS: 'BIODIV_Sym_MonumNat', VERSION: '1.1.1'},
+                            serverType: 'geoserver'
+                        })
+                    }),
+
+
+
+
+                    
 
                     // TODO: for singleTile the layer have to be Image but don't working
                     // new ol.layer.Image({
@@ -239,8 +268,6 @@
                     //         serverType: 'geoserver'
                     //     })
                     // }),
-
-
 
                 ]
             })
@@ -263,5 +290,14 @@
     });
     scene.terrainProvider = terrainProvider;
 
+    // openstreetmap search
+    $('.osmsearch').on('click', function(){
+      var thesearch = $('#search').val();
+      $.getJSON( "http://nominatim.openstreetmap.org/search?q="+thesearch+"&format=json&polygon=1&addressdetails=1", function( data ) {
+        //console.log(data[0].lon, data[0].lat);
+        map.getView().setCenter( ol.proj.transform( [ Number(data[0].lon), Number(data[0].lat) ], 'EPSG:4326', 'EPSG:3857' ) );
+        map.getView().setZoom(14);
+      });
+    });
 
 })();

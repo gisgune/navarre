@@ -79,3 +79,23 @@ html, body {
 .ol-zoomslider:hover {
   background: rgba(35, 10, 117, 0.4) none repeat scroll 0% 0%;
 }
+
+/*search button*/
+.thesearch {
+  right: 117px;
+  z-index: 99999;
+  position: absolute;
+  padding-top: 9px;
+}
+
+/*3dsearch*/
+.ol-3d {
+  right: 87px;
+  z-index: 99999;
+  position: absolute;
+  padding-top: 9px;
+}
+
+.hidden {
+  display: none;
+}

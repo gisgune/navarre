@@ -9,22 +9,21 @@
   </head>
 
   <body>
-  
 
-  <style type="text/css" media="screen">
-    .pepe{
-      position: relative;
-    }
+    <div class="ol-3d ol-unselectable ol-control">
+      <button id="3d"  class="ol-full-screen-false" onclick="javascript:ol3d.setEnabled(!ol3d.getEnabled())" />
+        <span class="ol-compass" style="transform: rotate(0deg);">3D</span>
+      </button>
+    </div> 
 
-  </style>
-    
-
-    <input class="pepe" type="button" value="Enable/disable" onclick="javascript:ol3d.setEnabled(!ol3d.getEnabled())" />
+    <div class="thesearch">
+      <a class="osmsearch">go</a><input id="search" type="text"/>
+    </div>
     
     <div id="map"></div>
-    
 
     <script src="http://openlayers.org/en/v3.3.0/build/ol.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="js/ol3-layerswitcher.js"></script>
     <script src="cesium/Cesium.js"></script>
     <script src="cesium/ol3cesium.js"></script>
